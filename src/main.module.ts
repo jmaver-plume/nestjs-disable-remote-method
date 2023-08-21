@@ -1,8 +1,21 @@
 import { Module } from '@nestjs/common';
 import { ResourceModule } from './resource/resource.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [ResourceModule],
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      load: [
+        () => ({
+          featureFlags: {
+            enableFindById: false,
+          },
+        }),
+      ],
+    }),
+    ResourceModule,
+  ],
   controllers: [],
   providers: [],
 })

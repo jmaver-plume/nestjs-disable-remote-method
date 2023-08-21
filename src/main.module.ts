@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ResourceModule } from './resource/resource.module';
 import { ConfigModule } from '@nestjs/config';
+import { CustomLifecycleModule } from './custom-lifecycle/custom-lifecycle.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { ConfigModule } from '@nestjs/config';
         }),
       ],
     }),
+    CustomLifecycleModule,
     ResourceModule,
   ],
   controllers: [],

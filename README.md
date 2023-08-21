@@ -1,3 +1,4 @@
 # NestJS Disable Remote Method
 
-The purpose of this project is to showcase how to implement LoopBack 3 `disableRemoteMethod` method.
+The purpose of this project is to showcase how to implement LoopBack 3 `disableRemoteMethod` method in NestJS.
+

@@ -11,7 +11,8 @@ import { DisableEndpointModule } from './disable-endpoint/disable-endpoint.modul
       load: [
         () => ({
           featureFlags: {
-            enableFindById: true,
+            enableFindById:
+              process.env.FEATURE_FLAG_ENABLE_FIND_BY_ID === 'true',
           },
         }),
       ],

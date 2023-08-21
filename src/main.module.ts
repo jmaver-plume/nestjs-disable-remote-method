@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { ResourceModule } from './resource/resource.module';
 import { ConfigModule } from '@nestjs/config';
 import { CustomLifecycleModule } from './custom-lifecycle/custom-lifecycle.module';
+import { DisableEndpointModule } from './disable-endpoint/disable-endpoint.module';
 
 @Module({
   imports: [
@@ -10,11 +11,12 @@ import { CustomLifecycleModule } from './custom-lifecycle/custom-lifecycle.modul
       load: [
         () => ({
           featureFlags: {
-            enableFindById: false,
+            enableFindById: true,
           },
         }),
       ],
     }),
+    DisableEndpointModule,
     CustomLifecycleModule,
     ResourceModule,
   ],

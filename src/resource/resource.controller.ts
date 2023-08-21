@@ -6,24 +6,19 @@ import {
   Put,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { DECORATORS } from '@nestjs/swagger/dist/constants';
-
-function disableEndpointMethod(endpointMethod: (...any: []) => void) {
-  Reflect.defineMetadata(
-    DECORATORS.API_EXCLUDE_ENDPOINT,
-    { disable: true },
-    endpointMethod,
-  );
-}
+import { DisableEndpointService } from '../disable-endpoint/disable-endpoint.service';
 
 @Controller('resources')
 export class ResourceController {
-  constructor(private readonly configService: ConfigService) {}
+  constructor(
+    private readonly configService: ConfigService,
+    private readonly disableEndpointService: DisableEndpointService,
+  ) {}
 
   onCustomModuleInit() {
     const featureFlags = this.configService.get('featureFlags');
     if (!featureFlags.enableFindById) {
-      disableEndpointMethod(this.findById);
+      this.disableEndpointService.disable(this.findById);
     }
   }
 
